@@ -4,6 +4,4 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-          before_action :authenticate_user!
-        # 多分
 end
