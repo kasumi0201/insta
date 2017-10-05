@@ -1,57 +1,12 @@
-<!-- <%= form_with(model: photo, local: true) do |form| %>
-  <% if photo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
-
-      <ul>
-      <% photo.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :image_data %>
-    <%= form.text_area :image_data, id: :photo_image_data %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :photo_user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :caption %>
-    <%= form.text_field :caption, id: :photo_caption %>
-<! =======書き足した部分========= -->
-<!-- <div class="field">
-
-  <%#= form.file_field :image, as: :hidden, input_html: {value: @photo.cached_image_data} %>
-  <%#= form.file_field :image, as: :file %>
-
-  <%= form.hidden_field :image, value: photo.cached_image_data %>
-       <%= form.file_field :image %>
-
-</div>
-  <! ================ -->
-
-  <!-- </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %> -->
-
 <%= form_for @photo do |f| %>
   <%= render "shared/errors", object: @photo %>
 
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.label :user_id %>
+  <%= f.text_field :user_id %>
 
-  <%= f.hidden_field :image, value: @photo.cached_image_data %>
+  <%= f.hidden_field :image, value: @photo.image_data %>
   <%= f.label :image %>
-  <%= f.file_field :image %>
+  <%= f.file_field :image, id: :photo_image_data %>
 
   <%= f.submit %>
 <% end %>
@@ -59,6 +14,6 @@
 
 
 <% if @photo.image_data? %>
- <%= image_tag @photo.image_url(:thumb) %>
+ <%= image_tag @photo.image_url %>
     Remove attachment: <%= f.check_box :remove_image %>
 <% end %>
