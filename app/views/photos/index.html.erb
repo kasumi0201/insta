@@ -18,6 +18,8 @@
         <td><%= photo.image_data %></td>
         <td><%= photo.user %></td>
         <td><%= photo.caption %></td>
+        <td><%= photo.image_url %></td>
+
         <td><%= link_to 'Show', photo %></td>
         <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
         <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -27,5 +29,13 @@
 </table>
 
 <br>
+
+
+<h1>Photos</h1>
+
+<%#= link_to 'Add Photo', new_photo_path %>
+
+<%= render @photos %>
+
 
 <%= link_to 'New Photo', new_photo_path %>

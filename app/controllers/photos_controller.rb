@@ -19,36 +19,59 @@ class PhotosController < ApplicationController
 
   # GET /photos/1/edit
   def edit
+    @photo = Photo.find(params[:id])
   end
 
   # POST /photos
   # POST /photos.json
   def create
-    @photo = Photo.new(photo_params)
-
-    respond_to do |format|
+      @photo = Photo.new(photo_params)
       if @photo.save
-        format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
-        format.json { render :show, status: :created, location: @photo }
+          flash[:success] = 'Photo added!'
+          redirect_to photos_path
       else
-        format.html { render :new }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
+          render 'new'
       end
-    end
   end
+
+  # def create------
+  #   @photo = Photo.new(photo_params)
+  #   @photo.user = current_user #ここは書き足した部分
+  #
+  #   respond_to do |format|
+  #     if @photo.save
+  #       format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
+  #       format.json { render :show, status: :created, location: @photo }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @photo.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end-----
+
+
 
   # PATCH/PUT /photos/1
   # PATCH/PUT /photos/1.json
   def update
-    respond_to do |format|
-      if @photo.update(photo_params)
-        format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
-        format.json { render :show, status: :ok, location: @photo }
-      else
-        format.html { render :edit }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @photo.update(photo_params)
+    #     format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @photo }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @photo.errors, status: :unprocessable_entity }
+    #   end
+    # end
+    @photo = Photo.find(params[:id])
+        if @photo.update_attributes(photo_params)
+          flash[:success] = 'Photo edited!'
+          redirect_to photos_path
+        else
+          render 'edit'
+        end
+
+
   end
 
   # DELETE /photos/1
@@ -68,7 +91,10 @@ class PhotosController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    # def photo_params
+    #   params.require(:photo).permit(:image_data, :user_id, :caption, :image)
+    # end
     def photo_params
-      params.require(:photo).permit(:image_data, :user_id, :caption)
+        params.require(:photo).permit(:title, :image, :remove_image)
     end
 end

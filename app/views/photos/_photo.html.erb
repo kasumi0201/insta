@@ -1,0 +1,7 @@
+<div>
+  <% if photo.image_data? %>
+    <%= image_tag photo.image_url(:thumb) %>
+
+  <% end %>
+  <p><%= photo %> | <%= link_to 'Edit', edit_photo_path(photo) %></p>
+</div>
