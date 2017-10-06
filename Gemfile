@@ -6,15 +6,12 @@ git_source(:github) do |repo_name|
 end
 
 gem 'devise'
-
 gem "shrine"
-
 gem "image_processing"
 gem "mini_magick", ">= 4.3.5"
-
 gem 'bootstrap', '~> 4.0.0.beta'
-
 gem 'jquery-rails'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'

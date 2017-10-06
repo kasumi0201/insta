@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :photos, only: [:new, :create, :index, :edit, :update]
+  resources :photos
   get 'home/index'
   get 'photos/index' ,to: 'photos#index'
 
