@@ -11,6 +11,7 @@ gem "image_processing"
 gem "mini_magick", ">= 4.3.5"
 gem 'bootstrap', '~> 4.0.0.beta'
 gem 'jquery-rails'
+gem 'acts_as_votable', '~> 0.10.0'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :photos
+  resources :photos do
+  member do
+    put "like", to: "photos#upvote"
+    put "dislike", to: "photos#downvote"
+  end
+end
   get 'home/index'
   get 'photos/index' ,to: 'photos#index'
 
@@ -7,6 +12,6 @@ Rails.application.routes.draw do
   devise_for :users
   # get 'photos'
 
-  root 'photos#index'
+  root 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

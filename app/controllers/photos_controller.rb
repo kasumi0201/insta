@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :set_photo, only: [:show, :edit, :update, :destroy,:search]
+  before_action :set_photo, only: [:show, :edit, :update, :destroy,:search, :upvote, :downvote]
     # GET /photos
   # GET /photos.json
   def index
@@ -10,6 +10,19 @@ class PhotosController < ApplicationController
       @photos = Photo.all.order("created_at DESC")
     end
   end
+
+
+  def upvote
+  @links = Photo.find(params[:id])
+  @links.upvote_by current_user
+  redirect_back fallback_location: root_path
+end
+
+def downvote
+  @links = Photo.find(params[:id])
+  @links.downvote_by current_user
+  redirect_back fallback_location: root_path
+end
 
 
 
