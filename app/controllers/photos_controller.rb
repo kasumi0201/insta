@@ -13,16 +13,16 @@ class PhotosController < ApplicationController
 
 
   def upvote
-  @links = Photo.find(params[:id])
-  @links.upvote_by current_user
-  redirect_back fallback_location: root_path
-end
+    @links = Photo.find(params[:id])
+    @links.upvote_by current_user
+    redirect_back fallback_location: root_path
+  end
 
-def downvote
-  @links = Photo.find(params[:id])
-  @links.downvote_by current_user
-  redirect_back fallback_location: root_path
-end
+  def downvote
+    @links = Photo.find(params[:id])
+    @links.downvote_by current_user
+    redirect_back fallback_location: root_path
+  end
 
 
 
@@ -34,7 +34,7 @@ end
 
   # GET /photos/new
   def new
-    @photos = current_user.photos.build
+    @photo = current_user.photos.build
   end
 
   # GET /photos/1/edit
@@ -46,10 +46,10 @@ end
   # POST /photos
   # POST /photos.json
   def create
-    @photos = current_user.photos.build(photo_params)
+    @photo = current_user.photos.build(photo_params)
 
     respond_to do |format|
-      if @photos.save
+      if @photo.save
          format.any
         format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
         format.json { render :show, status: :created, location: @photo }
@@ -65,7 +65,7 @@ end
   # PATCH/PUT /photos/1.json
   def update
     respond_to do |format|
-      if @photos.update(photo_params)
+      if @photo.update(photo_params)
          format.any
         format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
         format.json { render :show, status: :ok, location: @photo }
