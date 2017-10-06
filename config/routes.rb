@@ -5,13 +5,13 @@ Rails.application.routes.draw do
     put "dislike", to: "photos#downvote"
   end
 end
-  get 'home/index'
-  get 'photos/index' ,to: 'photos#index'
 
-    # root to: 'home#index'
+  #  get 'photos/index' ,to: 'photos#index'
+
+
   devise_for :users
-  # get 'photos'
-
+   get 'photos/index', to:'photos#index'
+   get 'photos/edit', to:'photos#edit'
   root 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
