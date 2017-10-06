@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%#= notice %></p> -->
 
 <h1>Photos</h1>
 
@@ -32,7 +32,7 @@
           Downvote
           <%= photo.get_downvotes.size %>
         <% end %> </td>
-        <td><%= link_to 'Show', photo %></td>
+        <td><%= link_to 'Show', photo_path(photo) %></td>
         <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
         <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

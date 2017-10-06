@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :set_photo, only: [:show, :edit, :update, :destroy,:search, :upvote, :downvote, :index]
+  before_action :set_photo, only: [ :edit, :update, :destroy,:search, :upvote, :downvote, :index,:show]
     # GET /photos
   # GET /photos.json
   def index
@@ -29,7 +29,7 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.json
   def show
-    @photo = Photo.new
+    @photo = Photo.find(params[:id])
   end
 
   # GET /photos/new
