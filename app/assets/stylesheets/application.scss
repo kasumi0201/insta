@@ -14,3 +14,45 @@
  */
 
 @import "bootstrap";
+body{
+  background-color: rgba(245, 245, 245, 0.34);
+}
+.logo{
+  width: 36px;
+
+}
+.line{
+  font-size: 32px;
+  font-weight: 100;
+  position: relative;
+  top: 5px;
+  margin: 0 20px;
+}
+// .card{
+//   // display: flex;
+// }
+
+.navbar{
+  height:100px;
+  background-color: #fff;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-color: rgba(172, 162, 162, 0.26);
+}
+
+.navbar-brand{
+  // font-family: 'Trattatello',sans-serif;
+  font-family: 'Brush Script MT',sans-serif;
+  font-size: 36px;
+}
+// .card{
+//   width: 200px;
+// }
+
+img.card{
+  width:300px;
+  height:250px;
+  // position: relative;
+
+  display:table-cell;
+}
