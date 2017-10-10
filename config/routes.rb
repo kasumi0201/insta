@@ -5,6 +5,11 @@ Rails.application.routes.draw do
       put "dislike", to: "photos#downvote"
     end
   end
+  resources :users do
+  member do
+   get :following, :followers
+  end
+end
 
   devise_for :users
   # get 'photos/index', to:'photos#index'
