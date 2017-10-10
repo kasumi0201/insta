@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+    root 'home#index'
+    resources :relationships, only: [:create, :destroy]
   resources :photos do
     member do
       put "like", to: "photos#upvote"
@@ -11,9 +13,16 @@ Rails.application.routes.draw do
   end
 end
 
-  devise_for :users
-  # get 'photos/index', to:'photos#index'
-  # get 'photos/edit', to:'photos#edit'
-  root 'home#index'
+
+  devise_for :users, :skip => [:sessions]
+as :user do
+  get 'sign-in' => 'devise/sessions#new', :as => :new_user_session
+  post 'sign-in' => 'devise/sessions#create', :as => :user_session
+  delete 'sign-out' => 'devise/sessions#destroy', :as => :destroy_user_session
+end
+
+  get 'photos/index', to:'photos#index'
+  get 'photos/edit', to:'photos#edit'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -10,4 +10,9 @@ class UsersController < ApplicationController
     @users = @user.followers
     render 'show_follower'
   end
+
+  def show
+    @user  = User.find_by_id(params[:id])
+    @user = current_user
+  end
 end
