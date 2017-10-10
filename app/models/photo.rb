@@ -1,5 +1,3 @@
-
-
 class Photo < ApplicationRecord
   include ImageUploader::Attachment.new(:image) # adds an `image` virtual attribute
   validates :image_data, :caption,  presence: true
@@ -9,6 +7,4 @@ class Photo < ApplicationRecord
     def self.search(search)
       where(['caption LIKE ?', "%#{search}%"])
     end
-
-
 end

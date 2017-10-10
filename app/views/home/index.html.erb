@@ -1,15 +1,16 @@
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
-
 <% @photos.each do |photo| %>
-  <tr>
-    <td>
-      <img src="<%= photo.image_url %>" class = "card">
-    </td>
-    <td><%= photo.user_id %></td>
-    <td><%= photo.caption %></td>
-    <td> <%= link_to like_photo_path(photo), method: :put do %>
-      Upvote
-      <%= photo.get_upvotes.size %>
+<tr>
+  <td><img src="<%= photo.image_url %>" class = "card"></td>
+  <td><%= photo.user_id %></td>
+  <td><%= photo.caption %></td>
+  <td> <%= link_to like_photo_path(photo), method: :put do %>
+    Upvote
+    <%= photo.get_upvotes.size %>
+    <%= link_to dislike_photo_path(photo), method: :put do %>
+      Downvote
+      <%= photo.get_downvotes.size %>
     <% end %>
-<% end %>
+    <% end %>
+    <% end %>

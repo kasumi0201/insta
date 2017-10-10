@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
-def index
-  @photos = Photo.all
-  
-end
+
+  def index
+    @photos = Photo.all
+  end
 
 end

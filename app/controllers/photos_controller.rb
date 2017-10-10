@@ -11,7 +11,6 @@ class PhotosController < ApplicationController
     end
   end
 
-
   def upvote
     @links = Photo.find(params[:id])
     @links.upvote_by current_user
@@ -23,8 +22,6 @@ class PhotosController < ApplicationController
     @links.downvote_by current_user
     redirect_back fallback_location: root_path
   end
-
-
 
   # GET /photos/1
   # GET /photos/1.json
@@ -40,7 +37,6 @@ class PhotosController < ApplicationController
   # GET /photos/1/edit
   def edit
     @photo = Photo.new
-
   end
 
   # POST /photos
@@ -87,6 +83,7 @@ class PhotosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
