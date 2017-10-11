@@ -3,5 +3,14 @@
   <%= render 'users/stats' %>
 </section>
 
-<%= @user %>
-<%#= link_to 'edit' edit_user_path(@user) %>
+<h2>My Page</h2>
+<table>
+  <tr>
+    <th>email</th>
+    <td><%= current_user.email %></td>
+  </tr>
+  <tr>
+    <th>name</th>
+    <td><%= current_user %></td>
+  </tr>
+</table>

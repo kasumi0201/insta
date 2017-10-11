@@ -22,12 +22,10 @@
         <td><%= photo.user_id %></td>
         <td><%= photo.caption %></td>
 
-        <td><%= link_to 'Show', photo_path(photo) %></td>
-        <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
-        <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', photo_path(photo), class:"pink_btn" %></td>
+        <td><%= link_to 'Edit', edit_photo_path(photo), class:"pink_btn" %></td>
+        <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } , class:"pink_btn"%></td>
       </tr>
     <% end %>
 </tbody>
 </table>
-<br>
-<%= link_to 'New Photo', new_photo_path %>

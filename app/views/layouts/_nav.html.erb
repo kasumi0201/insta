@@ -20,7 +20,7 @@
         <a class="nav-link" href="#">News</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link disabled" href="#">My page</a>
+        <%= link_to "My page", user_path(:sessions),class:"nav-link disabled"  %>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -28,16 +28,15 @@
           <%= text_field_tag :search, params[:search], placeholder: "Search" %>
           <%= submit_tag "Search", :name => nil %>
       <% end %>
+      <% if user_signed_in? %>
+      <strong><%#= link_to current_user.user_name, photos_show_path %></strong>
+      <%= link_to 'Edit Profile', edit_user_registration_path ,class:"square_btn" %>
+      <%= link_to 'Log out', destroy_user_session_path, method: :delete ,class:"square_btn"  %>
+  <% else %>
+      <%= link_to 'Sign Up', new_user_registration_path, class:"square_btn"  %>
+      <%= link_to 'Log in', new_user_session_path, class:"square_btn" %>
+      <% end %>
+      <%= link_to "photos", photos_path ,class:"square_btn" %>
 
   </div>
 </nav>
-<nav>
-                <% if user_signed_in? %>
-                <strong><%#= link_to current_user.user_name, photos_show_path %></strong>
-                <%= link_to 'Edit Profile', edit_user_registration_path %>
-                <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-            <% else %>
-                <%= link_to 'Sign Up', new_user_registration_path %>
-                <%= link_to 'Log in', new_user_session_path %>
-                <% end %>
-            </nav>

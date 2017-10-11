@@ -15,8 +15,5 @@ class UsersController < ApplicationController
     @user  = User.find_by_id(params[:id])
     @user = current_user
   end
-  def edit
-    @user = User.find(params[:id])
-    render :layout => 'users'
-  end
+
 end
