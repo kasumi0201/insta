@@ -9,6 +9,7 @@
 
   <body>
     <%= render :partial => 'layouts/nav' %>
+    <a href="#" class="square_btn"><%= link_to "photos", photos_path %></a> 
     <%= link_to "photos", photos_path %>
     <%= link_to "follow", user_path(:sessions) %>
     <p class="notice"><%= notice %></p>

@@ -10,27 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010044522) do
+ActiveRecord::Schema.define(version: 20171011013345) do
 
-  create_table "followers", id: false, force: :cascade do |t|
-    t.integer "followed_id", null: false
-    t.integer "follower_id", null: false
-    t.index ["followed_id", "follower_id"], name: "index_followers_on_followed_id_and_follower_id", unique: true
-    t.index ["follower_id", "followed_id"], name: "index_followers_on_follower_id_and_followed_id", unique: true
-  end
-
-  create_table "follows", force: :cascade do |t|
-    t.string "followable_type", null: false
-    t.integer "followable_id", null: false
-    t.string "follower_type", null: false
-    t.integer "follower_id", null: false
-    t.boolean "blocked", default: false, null: false
+  create_table "comments", force: :cascade do |t|
+    t.string "body"
+    t.integer "photo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["followable_id", "followable_type"], name: "fk_followables"
-    t.index ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id"
-    t.index ["follower_id", "follower_type"], name: "fk_follows"
-    t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
+    t.index ["photo_id"], name: "index_comments_on_photo_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -65,6 +52,8 @@ ActiveRecord::Schema.define(version: 20171010044522) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "position"
+    t.text "s_introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

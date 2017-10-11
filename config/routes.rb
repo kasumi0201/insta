@@ -1,25 +1,21 @@
 Rails.application.routes.draw do
-    root 'home#index'
-    resources :relationships, only: [:create, :destroy]
+  root 'home#index'
+  resources :relationships, only: [:create, :destroy]
   resources :photos do
+    resources :comments
     member do
       put "like", to: "photos#upvote"
       put "dislike", to: "photos#downvote"
     end
   end
+
   resources :users do
-  member do
-   get :following, :followers
+    member do
+      get :following, :followers
+    end
   end
-end
 
-
-  devise_for :users, :skip => [:sessions]
-as :user do
-  get 'sign-in' => 'devise/sessions#new', :as => :new_user_session
-  post 'sign-in' => 'devise/sessions#create', :as => :user_session
-  delete 'sign-out' => 'devise/sessions#destroy', :as => :destroy_user_session
-end
+  devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
 
   get 'photos/index', to:'photos#index'
   get 'photos/edit', to:'photos#edit'
