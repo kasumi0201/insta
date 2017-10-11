@@ -6,8 +6,7 @@ class Photo < ApplicationRecord
     belongs_to :user
 
      acts_as_votable
-       has_many :comments
-      #  , :comments, dependent: :destroy
+       has_many :comments, dependent: :destroy
 
 
 

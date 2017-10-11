@@ -29,7 +29,6 @@
           <%= submit_tag "Search", :name => nil %>
       <% end %>
       <% if user_signed_in? %>
-      <strong><%#= link_to current_user.user_name, photos_show_path %></strong>
       <%= link_to 'Edit Profile', edit_user_registration_path ,class:"square_btn" %>
       <%= link_to 'Log out', destroy_user_session_path, method: :delete ,class:"square_btn"  %>
   <% else %>
