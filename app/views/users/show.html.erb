@@ -19,13 +19,13 @@
   </tr>
 </table> -->
 
-<% provide(:title, @user.name) %>
+<% provide(:title, @user) %>
 <div class="row">
   <aside class="col-md-4">
     <section>
       <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
+        <%#= gravatar_for @user %>
+        <%= @user %>
       </h1>
     </section>
     <section class="stats">
@@ -33,13 +33,13 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
-    <% if @user.photos.any? %>
-      <h3>Photos (<%= @user.photos.count %>)</h3>
+    <%= render 'follow_form' if user_signed_in?%>
+    <%# if @user.photos.any? %>
+      <h3>Photos (<%#= @user.photos.count %>)</h3>
       <ol class="photos">
         <%= render @photos %>
       </ol>
-      <%= will_paginate @photos %>
-    <% end %>
+      <%#= will_paginate @photos %>
+    <%# end %>
   </div>
 </div>
