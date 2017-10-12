@@ -1,13 +1,13 @@
 <%= render 'follow_form' if  signed_in? %>
-<section class="stats">
-  <%= render 'users/stats' %>
-</section>
+<!-- <section class="stats">
+  <%#= render 'users/stats' %>
+</section> -->
 
 <h2>My Page</h2>
-<table>
+<!-- <table>
   <tr>
     <th>email</th>
-    <td><%= current_user.email %></td>
+    <td><%#= current_user.email %></td>
   </tr>
   <tr>
     <th>name</th>
@@ -15,6 +15,31 @@
   </tr>
   <tr>
     <th>user name</th>
-    <td><%= current_user.username %></td>
+    <td><%#= current_user.username %></td>
   </tr>
-</table>
+</table> -->
+
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <%= render 'follow_form' if logged_in? %>
+    <% if @user.photos.any? %>
+      <h3>Photos (<%= @user.photos.count %>)</h3>
+      <ol class="photos">
+        <%= render @photos %>
+      </ol>
+      <%= will_paginate @photos %>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,17 @@
 <h1>Home#index</h1>
+<%# if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+<%# end %>
 
 <%#= link_to "Log in", new_session_path(resource_name) %>
+  <%#= link_to "My page", user_path(@user.id),class:"nav-link disabled"  %>
 <p>Find me in app/views/home/index.html.erb</p>
 <% @photos.each do |photo| %>
 <tr>

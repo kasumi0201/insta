@@ -43,7 +43,6 @@ class PhotosController < ApplicationController
   # POST /photos.json
   def create
     @photo = current_user.photos.build(photo_params)
-
     respond_to do |format|
       if @photo.save
          format.any
