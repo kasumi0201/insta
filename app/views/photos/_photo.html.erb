@@ -4,3 +4,20 @@
   <% end %>
   <%= link_to 'Edit', edit_photo_path(photo) %>
 </div>
+
+
+<li id="photo-<%= photo.id %>">
+  <%= link_to gravatar_for(photo.user, size: 50), photo.user %>
+  <span class="user"><%= link_to photo.user.name, photo.user %></span>
+  <span class="content">
+    <%= photo.content %>
+    <%= image_tag photo.image_url if photo.picture? %>
+  </span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(photo.created_at) %> ago.
+    <% if current_user?(photo.user) %>
+      <%= link_to "delete", photo, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
+  </span>
+</li>

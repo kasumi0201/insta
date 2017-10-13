@@ -5,7 +5,7 @@
 </p>
 <p>
   <strong>User:</strong>
-  <%= @photo.user %>
+  <%= @photo.user.name %>
 </p>
 <p>
   <strong>Caption:</strong>
@@ -18,6 +18,11 @@
 <ul>
   <% @photo.comments.each do |comment| %>
   <li>
+    <!-- <#%userID = current_user.id%> -->
+  <%= comment.user.name %>
+  <!-- <%#= @user %> -->
+
+  <%= ":" %>
   <%= comment.body %>
   <%= link_to 'x',
   photo_comment_path(@photo,comment),
@@ -29,12 +34,12 @@
 </ul>
 <% end %>
 
-<%=form_for([@photo, @photo.comments.build]) do |form|%>
+<%=form_for([@photo, @photo.comments.new]) do |form|%>
 <p>
 <%= form.text_field :body %>
 </p>
 <p>
-<%= form.submit%>
+<%= form.submit %>
 </p>
 <% end %>
 

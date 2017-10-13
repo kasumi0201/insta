@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   def following
-      @user  = User.find(params[:id])
-      @users = @user.following
-      render 'show_follow'
+    @user  = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
   end
 
   def followers
@@ -12,9 +12,32 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user  = User.find_by_id(params[:id])
+    @user.name  = User.find_by_id(params[:id])
     @user = current_user
-      @photos = Photo.all
+    @photos = Photo.where(user_id: @user.id)
+    # @photos = @user.photos.paginate(page: params[:page])
+  end
+
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      # @user.send_activation_email
+      # flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
+    else
+      render 'new'
+    end
+
+    def index
+      @users = User.find(params[:id])
+      # User.where(activated: FILL_IN).paginate(page: params[:page])
+    end
+
+    def show
+      @user = User.find(params[:id])
+      redirect_to root_url and return unless FILL_IN
+    end
   end
 
 

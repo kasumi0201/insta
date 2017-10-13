@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     @user = current_user
     if user_signed_in?
   @photo  = current_user.photos.build
-  @feed_items = current_user.feed.paginate(page: params[:page])
+  # @feed_items = current_user.feed.paginate(page: params[:page])
   end
 
 end
@@ -13,7 +13,7 @@ end
           @user = current_user
     if user_signed_in?
       @photo  = current_user.photos.build
-      @feed_items = current_user.feed.paginate(page: params[:page])
+      # @feed_items = current_user.feed.paginate(page: params[:page])
     end
 
     def help

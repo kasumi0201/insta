@@ -1,5 +1,7 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: [ :edit, :update, :destroy,:search, :upvote, :downvote, :index,:show]
+    before_action :correct_user,   only: :destroy
+
     # GET /photos
   # GET /photos.json
   def index
@@ -27,11 +29,18 @@ class PhotosController < ApplicationController
   # GET /photos/1.json
   def show
     @photo = Photo.find(params[:id])
+    puts "================"
+    puts params
+    #  @user = User.all
+    @user  = User.find_by_id(params[:id])
+    # current_user
+    # @user.name = current_user.name
   end
 
   # GET /photos/new
   def new
-    @photo = current_user.photos.build
+    @photo =Photo.new
+    # current_user.photos.build
   end
 
   # GET /photos/1/edit
@@ -41,8 +50,10 @@ class PhotosController < ApplicationController
 
   # POST /photos
   # POST /photos.json
+
   def create
-    @photo = current_user.photos.build(photo_params)
+    @photo = Photo.new(photo_params)
+    @photo.user = current_user
     respond_to do |format|
       if @photo.save
          format.any
@@ -55,6 +66,18 @@ class PhotosController < ApplicationController
       end
     end
   end
+
+  #
+  # def create
+  #   @photo = current_user.photos.build(photo_params)
+  #   if @photo.save
+  #     flash[:success] = "photo created!"
+  #     redirect_to root_url
+  #   else
+  #     render 'home/home'
+  #   end
+  # end
+
 
   # PATCH/PUT /photos/1
   # PATCH/PUT /photos/1.json
@@ -92,6 +115,11 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-      params.require(:photo).permit(:image, :image_data, :caption, :body)
+      params.require(:photo).permit(:image, :image_data, :caption, :body,:content, :picture)
+    end
+
+    def correct_user
+      @photo = current_user.photos.find_by(id: params[:id])
+      redirect_to root_url if @photo.nil?
     end
 end
