@@ -1,31 +1,50 @@
-<%= render 'follow_form' if  signed_in? %>
 <h2>My Page</h2>
-
-<% provide(:title, @user) %>
+<%# provide(:title, @user) %>
 <div class="row">
   <aside class="col-md-4">
     <section>
       <h1>
         <%#= gravatar_for @user %>
         <p>username:</p>
-        <%= @user.name %>
+        <%#= @user.name %>
       </h1>
-    <!-- </section>
-    <section class="stats"> -->
-      <%= render 'shared/stats' %>
     </section>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+  </section>
   </aside>
   <div class="col-md-8">
-    <%#= render 'follow_form' if user_signed_in?%>
-    <%# if @user.photos.any? %>
-      <h3>Photos (<%= @user.photos.count %>)</h3>
-
-      <!-- <ol class="photos">
-        <%#= render @photos %>
-      </ol> -->
+    <%= render 'follow_form' if user_signed_in?%>
+      <h3>Photos (<%= current_user.photos.count %>)</h3>
       <%  @photos.each do |photo|%>
         <img src="<%=photo.image_url %>" alt="" class = "my_image">
       <%end %>
-    <%# end %>
   </div>
 </div>
+
+
+
+<!-- <%# provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section>
+      <h1>
+        <%#= gravatar_for @user %>
+        <%#= @user.name %>
+      </h1>
+    </section>
+    <section class="stats">
+      <%#= render 'shared/stats' %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <%#= render 'follow_form' if logged_in? %>
+    <%# if @user.photos.any? %>
+      <h3>photos (<%#= @user.photos.count %>)</h3>
+      <ol class="photos">
+        <%#= render @photos %>
+      </ol>
+      <%#= will_paginate @photos %>
+    <%# end %>
+  </div>
+</div> -->
