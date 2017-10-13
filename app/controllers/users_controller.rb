@@ -12,8 +12,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user.name  = User.find_by_id(params[:id])
     @user = current_user
+    @user.name = User.find_by_id(params[:id])
     @photos = Photo.where(user_id: @user.id)
     # @photos = @user.photos.paginate(page: params[:page])
   end

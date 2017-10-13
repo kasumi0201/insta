@@ -7,7 +7,7 @@
 
 
 <li id="photo-<%= photo.id %>">
-  <%= link_to gravatar_for(photo.user, size: 50), photo.user %>
+  <%#= link_to gravatar_for(photo.user, size: 50), photo.user %>
   <span class="user"><%= link_to photo.user.name, photo.user %></span>
   <span class="content">
     <%= photo.content %>
