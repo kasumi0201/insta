@@ -17,6 +17,7 @@ class PhotosController < ApplicationController
     @links = Photo.find(params[:id])
     @links.upvote_by current_user
     redirect_back fallback_location: root_path
+    # ↑redirect_to :back の代わり
   end
 
   def downvote
@@ -45,7 +46,7 @@ class PhotosController < ApplicationController
 
   # GET /photos/1/edit
   def edit
-    @photo = Photo.new
+    @photo = Photo.find(params[:id])
   end
 
   # POST /photos
@@ -67,31 +68,16 @@ class PhotosController < ApplicationController
     end
   end
 
-  #
-  # def create
-  #   @photo = current_user.photos.build(photo_params)
-  #   if @photo.save
-  #     flash[:success] = "photo created!"
-  #     redirect_to root_url
-  #   else
-  #     render 'home/home'
-  #   end
-  # end
-
-
   # PATCH/PUT /photos/1
   # PATCH/PUT /photos/1.json
+
+
   def update
-    respond_to do |format|
-      if @photo.update(photo_params)
-         format.any
-        format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
-        format.json { render :show, status: :ok, location: @photo }
-      else
-         format.any
-        format.html { render :edit }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
-      end
+    if @photo.update_attributes(photo_params)
+      flash[:success] = "Photo updated"
+      redirect_to @photo
+    else
+      render 'edit'
     end
   end
 

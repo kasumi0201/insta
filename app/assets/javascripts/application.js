@@ -17,3 +17,14 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery
+//= require jquery_ujs
+
+
+<script type="text/javascript">
+
+$('.imgBox img').click(function() {
+$('.fa-heart').toggleClass('open');
+$(this).toggleClass('open');
+});
+</script>

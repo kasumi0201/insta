@@ -14,14 +14,37 @@
     </tr>
   </thead>
 
+
+  <div class="wrap">
+  <div class="imgBox">
+    <img src="http://weblabla.m-pokoj.net/wp-content/uploads/sites/5/2016/07/image01.png">
+     <i class="fa fa-heart"></i>
+   </div>
+ </div>
+
+
+
   <tbody>
     <% @photos.each do |photo| %>
       <tr>
         <td>
+        <div class="wrap">
+        <div class="imgBox">
           <img src="<%= photo.image_url %>" class = "card">
+           <i class="fa fa-heart"></i>
+         </div>
+       </div>
         </td>
         <td><%= photo.user_id %></td>
         <td><%= photo.caption %></td>
+        <td> <%= link_to like_photo_path(photo), method: :put do %>
+          Upvote
+          <%= photo.get_upvotes.size %>
+          <%= link_to dislike_photo_path(photo), method: :put do %>
+            Downvote
+            <%= photo.get_downvotes.size %>
+          <% end %>
+          <% end %>
 
         <td><%= link_to 'Show', photo_path(photo), class:"pink_btn" %></td>
         <td><%= link_to 'Edit', edit_photo_path(photo), class:"pink_btn" %></td>

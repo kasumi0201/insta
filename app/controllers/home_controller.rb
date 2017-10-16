@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @photos = Photo.all
+    @photos = photo.all
     @user = current_user
     if user_signed_in?
     @photo  = current_user.photos.build

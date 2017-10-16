@@ -1,3 +1,54 @@
 // Place all the styles related to the Photos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.wrap{
+  margin: 0 auto;
+  max-width: 600px;
+}
+.imgBox{
+  position: relative;
+}
+//写真のサイズを小さくします
+.imgBox img {
+  transform: scale(0.5);
+  max-width: 100%;
+  box-shadow:3px 3px 5px #93a9c1;
+}
+.imgBox img:hover {
+  cursor: pointer;
+}
+//クリックしたら写真サイズを戻します
+.imgBox img.open{
+  transform: scale(1);
+  transition:all 0.3s;
+}
+//ハートを設置します
+//サイズが０ですので表示されません
+.fa-heart {
+  position:absolute;
+  left:50%;
+  top:50%;
+  margin:-50px 0 0 -50px;
+  transform: scale(0);
+  color: #fd8e8e;
+  font-size:100px;
+}
+//サムネイルがクリックされたらアニメーション
+.fa-heart.open {
+  animation: heart 0.5s;
+}
+@keyframes heart {
+ 50% {
+   opacity: 1;
+   transform: scale(1);
+  }
+99% {
+   opacity: 0;
+   transform: scale(2.5);
+  }
+100% {
+   opacity: 0;
+   transform: scale(0);
+  }
+}

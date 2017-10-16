@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @user.name = User.find_by_id(params[:id])
+    # @user.name = User.find_by_id(params[:id])
     # @user.id = User.find_by_id(params[:id])
     @photos = Photo.where(user_id: @user.id)
     # @photos = @user.photos.paginate(page: params[:page])
@@ -24,7 +24,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.save
       # @user.send_activation_email
       # flash[:info] = "Please check your email to activate your account."

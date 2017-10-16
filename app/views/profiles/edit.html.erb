@@ -1,0 +1,28 @@
+<h1>profiles#edit</h1>
+<p>Find me in app/views/profiles/edit.html.erb</p>
+
+<% provide(:title, "Edit profile") %>
+<h1>Update your profile</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@profile) do |f| %>
+      <%#= render 'shared/error_messages' %>
+
+      <%= f.label :username %>
+      <%= f.text_field :username, class: 'form-control' %>
+
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class: 'form-control' %>
+
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: 'form-control' %>
+
+      <%= f.label :bio %>
+      <%= f.text_field :bio, class: 'form-control' %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+<%= link_to 'Show', @profile %>
+<%= link_to 'Back', profiles_path %>
